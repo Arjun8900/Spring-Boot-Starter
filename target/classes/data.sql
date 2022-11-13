@@ -1,0 +1,1 @@
+insert into Alien(id, name, language) values (1, 'Green Lantern', 'Hindi');

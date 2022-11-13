@@ -1,6 +1,10 @@
 package com.example.controller;
 
 import com.data.Alien;
+import com.dao.AlienDbManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,10 +14,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
+@ComponentScan("com")
+@EntityScan("com")
 public class HomeController {
+
+    @Autowired
+    AlienDbManager alienDbManager;
 
     @RequestMapping("/")
     public String home() {
+        return "home";
+    }
+
+    // This comes from home.jsp
+    @RequestMapping("/addAlien")
+    public String addAlien(Alien alien) {
         return "home";
     }
 
