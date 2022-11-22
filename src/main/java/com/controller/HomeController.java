@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @ComponentScan("com")
@@ -36,6 +37,27 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("alien", alien.toString());
         modelAndView.setViewName("display");
+        return modelAndView;
+    }
+
+    @RequestMapping("/getAlien")
+    public ModelAndView getAlien(@RequestParam  int id) {
+        System.out.println(id);
+        Alien dbAlien = alienDbManager.findById(id).orElse(new Alien());
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("alien", dbAlien.toString());
+        modelAndView.setViewName("showAlien");
+        return modelAndView;
+    }
+
+    @RequestMapping("/getAliens")
+    public ModelAndView getAliens(@RequestParam String tech) {
+        System.out.println(tech);
+        List<Alien> aliens = alienDbManager.findByTechSorted(tech);
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("aliens", aliens);
+        modelAndView.setViewName("showAliens");
         return modelAndView;
     }
 
