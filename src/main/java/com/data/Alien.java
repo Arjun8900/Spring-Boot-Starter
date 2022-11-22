@@ -15,6 +15,7 @@ import javax.persistence.Table;
 //@Scope(value = "prototype")
 @Table(name = "Alien")
 public class Alien {
+
     @Id
     private int id;
     private String name;
@@ -30,5 +31,6 @@ public class Alien {
 //    public void printHello() {
 //        System.out.println("Hello " + laptop.getData());
 //    }
+
 }
 
