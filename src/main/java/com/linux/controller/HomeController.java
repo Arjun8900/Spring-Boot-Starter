@@ -1,7 +1,8 @@
-package com.controller;
+package com.linux.controller;
 
-import com.dao.AlienDbManager;
-import com.data.Alien;
+import com.linux.model.Alien;
+import com.linux.repository.AlienDbManager;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -19,6 +20,7 @@ import java.util.List;
 @ComponentScan("com")
 @EntityScan("com")
 @SpringBootApplication(scanBasePackages={"com"})
+@Slf4j
 public class HomeController {
 
     @Autowired
@@ -26,12 +28,14 @@ public class HomeController {
 
     @RequestMapping("/")
     public String home() {
+        log.info("Inside root");
         return "home";
     }
 
     // This comes from home.jsp
-    @RequestMapping("/addAlien")
+    @RequestMapping("/addAlienOld")
     public ModelAndView addAlien(Alien alien) {
+        log.info("Adding alien: " + alien);
         System.out.println(alien);
         alienDbManager.save(alien);
         ModelAndView modelAndView = new ModelAndView();
@@ -40,9 +44,9 @@ public class HomeController {
         return modelAndView;
     }
 
-    @RequestMapping("/getAlien")
+    @RequestMapping("/getAlienById")
     public ModelAndView getAlien(@RequestParam  int id) {
-        System.out.println(id);
+        log.info("Adding alien: " + id);
         Alien dbAlien = alienDbManager.findById(id).orElse(new Alien());
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("alien", dbAlien.toString());
@@ -50,8 +54,8 @@ public class HomeController {
         return modelAndView;
     }
 
-    @RequestMapping("/getAliens")
-    public ModelAndView getAliens(@RequestParam String tech) {
+    @RequestMapping("/getAliensFromTech")
+    public ModelAndView getAliensFromTech(@RequestParam String tech) {
         System.out.println(tech);
         List<Alien> aliens = alienDbManager.findByTechSorted(tech);
 

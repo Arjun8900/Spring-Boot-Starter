@@ -1,16 +1,14 @@
-package com.dao;
+package com.linux.repository;
 
-import com.data.Alien;
+import com.linux.model.Alien;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Component
-public interface AlienDbManager extends CrudRepository<Alien, Integer> {
+public interface AlienDbManager extends JpaRepository<Alien, Integer> {
 
     List<Alien> findByTech(String tech);
 

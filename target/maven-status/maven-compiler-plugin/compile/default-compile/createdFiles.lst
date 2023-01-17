@@ -1,0 +1,15 @@
+com\linux\controller\HomeController.class
+com\linux\controller\StudentController.class
+com\linux\controller\RestController.class
+com\linux\utils\CmdUtils.class
+com\linux\Application.class
+com\linux\controller\LinuxController.class
+com\linux\repository\AlienDbManager.class
+com\linux\dto\LinuxResponse.class
+com\linux\service\AgentInformation.class
+com\linux\repository\StudentDBManager.class
+com\linux\dto\LinuxResponse$LinuxResponseBuilder.class
+com\linux\model\Student.class
+com\linux\utils\ShowProperties.class
+com\linux\utils\BashUtils.class
+com\linux\model\Alien.class
